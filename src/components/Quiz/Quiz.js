@@ -55,6 +55,10 @@ class Quiz extends Component {
     ]
   }
 
+  onAnswerClickHandler = answerId => {
+    console.log(answerId);
+  }
+
   render() {
     return (
       <div className = {styles.Quiz}>
@@ -65,6 +69,7 @@ class Quiz extends Component {
             questionNumber = {this.state.activeQuestion + 1}
             quizLength = {this.state.quiz.length}
             answers = {this.state.quiz[this.state.activeQuestion].answers}
+            onAnswerClick = {this.onAnswerClickHandler}
           />
         </div>
       </div>
