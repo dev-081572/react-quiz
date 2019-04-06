@@ -4,48 +4,49 @@ import ActiveQuiz from './ActiveQuiz/ActiveQuiz';
 
 class Quiz extends Component {
   state = {
+    activeQuestion: 0,
     quiz: [
       {
-        questionText: 'Вопрос 1',
+        questionText: 'Кто сыграл капитана Жеглова?',
         questionId: 1,
         answers: [
           {
-            answerText: 'Ответ 1',
+            answerText: 'Станислав Говорухин',
             answerId: 1
           },
           {
-            answerText: 'Ответ 2',
+            answerText: 'Владимир Высоцкий',
             answerId: 2
           },
           {
-            answerText: 'Ответ 3',
+            answerText: 'Александр Белявский',
             answerId: 3
           },
           {
-            answerText: 'Ответ 4',
+            answerText: 'Евгений Евстигнеев',
             answerId: 4
           }
         ],
-        rightAnswerId: 4
+        rightAnswerId: 2
       },
       {
-        questionText: 'Вопрос 2',
+        questionText: 'Какое прозвище было у персонажа Леонида Куравлева?',
         questionId: 2,
         answers: [
           {
-            answerText: 'Ответ 1',
+            answerText: 'Фокс',
             answerId: 1
           },
           {
-            answerText: 'Ответ 2',
+            answerText: 'Ручечник',
             answerId: 2
           },
           {
-            answerText: 'Ответ 3',
+            answerText: 'Кирпич',
             answerId: 3
           },
           {
-            answerText: 'Ответ 4',
+            answerText: 'Копченый',
             answerId: 4
           }
         ],
@@ -60,10 +61,10 @@ class Quiz extends Component {
         <div className = {styles.QuizWrapper}>
           <h1>Quiz</h1>
           <ActiveQuiz
-            question = {this.state.quiz[0].questionText}
-            questionNumber = {this.state.quiz[0].questionId}
+            question = {this.state.quiz[this.state.activeQuestion].questionText}
+            questionNumber = {this.state.activeQuestion + 1}
             quizLength = {this.state.quiz.length}
-            answers = {this.state.quiz[0].answers}
+            answers = {this.state.quiz[this.state.activeQuestion].answers}
           />
         </div>
       </div>
