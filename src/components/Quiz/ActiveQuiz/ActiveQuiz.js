@@ -1,19 +1,15 @@
 import React from 'react';
 import styles from './ActiveQuiz.module.scss';
+import AnswerList from './AnswerList/AnswerList';
 
 const ActiveQuiz = props => (
   <div className = {styles.ActiveQuiz}>
     <div className = {styles.QuestionSection}>
-      <p><strong>1</strong>. Как дела?</p>
-      <small>4 из 12</small>
+      <p><strong>{props.questionNumber}</strong>. {props.question}</p>
+      <small>{props.questionNumber} из {props.quizLength}</small>
     </div>
 
-    <ul>
-      <li>Плохо</li>
-      <li>Нормально</li>
-      <li>Хорошо</li>
-      <li>Отлично</li>
-    </ul>
+    <AnswerList answers = {props.answers} />
   </div>
 );
 
