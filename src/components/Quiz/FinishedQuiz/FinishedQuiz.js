@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './FinishedQuiz.module.scss';
+import {Link} from 'react-router-dom';
 import Button from '../../../UI/Button/Button';
 
 const FinishedQuiz = props => {
@@ -39,9 +40,11 @@ const FinishedQuiz = props => {
           Повторить
         </Button>
 
-        <Button type = 'primary'>
-          Список тестов
-        </Button>
+        <Link to = '/'>
+          <Button type = 'primary'>
+            Список тестов
+          </Button>
+        </Link>
       </div>
     </div>
   );
