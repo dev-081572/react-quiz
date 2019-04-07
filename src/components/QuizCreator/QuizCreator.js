@@ -29,7 +29,9 @@ class QuizCreator extends Component {
   }
 
   selectChangeHandler = event => {
-    console.log(event.target.value);
+    this.setState({
+      rightAnswerId: +event.target.value
+    })
   }
 
   renderControls() {
