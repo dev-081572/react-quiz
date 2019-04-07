@@ -31,17 +31,20 @@ class QuizCreator extends Component {
       const control = this.state.formControls[controlName];
 
       return (
-        <Input
-          key = {index}
-          type = {control.type}
-          label = {control.label}
-          value = {control.value}
-          errorMessage = {control.errorMessage}
-          valid = {control.valid}
-          touched = {control.touched}
-          shouldValidate = {!!control.validation}
-          onChange = {event => this.onChangeHandler(event, controlName)}
-        />
+        <React.Fragment key = {index}>
+          <Input
+            type = {control.type}
+            label = {control.label}
+            value = {control.value}
+            errorMessage = {control.errorMessage}
+            valid = {control.valid}
+            touched = {control.touched}
+            shouldValidate = {!!control.validation}
+            onChange = {event => this.onChangeHandler(event, controlName)}
+          />
+
+          {index === 0 ? <hr /> : null}
+        </React.Fragment>
       )
     })
   }
