@@ -53,7 +53,8 @@ class Quiz extends Component {
         rightAnswerId: 4
       }
     ],
-    answerState: null
+    answerState: null,
+    isFinished: false
   }
 
   onAnswerClickHandler = answerId => {
@@ -74,6 +75,9 @@ class Quiz extends Component {
       const timeout = setTimeout(() => {
         if (this.isQuizFinished()) {
           console.log('Quiz Finished');
+          this.setState({
+            isFinished: true
+          });
         } else {
           this.setState({
             activeQuestion: this.state.activeQuestion + 1,
@@ -98,14 +102,18 @@ class Quiz extends Component {
       <div className = {styles.Quiz}>
         <div className = {styles.QuizWrapper}>
           <h1>Quiz</h1>
-          <ActiveQuiz
-            question = {this.state.quiz[this.state.activeQuestion].questionText}
-            questionNumber = {this.state.activeQuestion + 1}
-            quizLength = {this.state.quiz.length}
-            answers = {this.state.quiz[this.state.activeQuestion].answers}
-            onAnswerClick = {this.onAnswerClickHandler}
-            answerState = {this.state.answerState}
-          />
+          {
+            this.state.isFinished
+            ? <h2>Quiz Finished</h2>
+            : <ActiveQuiz
+                question = {this.state.quiz[this.state.activeQuestion].questionText}
+                questionNumber = {this.state.activeQuestion + 1}
+                quizLength = {this.state.quiz.length}
+                answers = {this.state.quiz[this.state.activeQuestion].answers}
+                onAnswerClick = {this.onAnswerClickHandler}
+                answerState = {this.state.answerState}
+              />
+          }
         </div>
       </div>
     )
