@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styles from './Auth.module.scss';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
+import {validateControl} from '../../form/formFunctions';
 
 class Auth extends Component {
   state = {
@@ -46,7 +47,18 @@ class Auth extends Component {
   }
 
   onChangeHandler = (event, controlName) => {
-    console.log(`${controlName}: `, event.target.value);
+    const formControls = {...this.state.formControls};
+    const control = {...formControls[controlName]};
+
+    control.value = event.target.value;
+    control.touched = true;
+    control.valid = validateControl(control.value, control.validation);
+
+    formControls[controlName] = control;
+
+    this.setState({
+      formControls
+    });
   }
 
   renderInputs() {
