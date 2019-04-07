@@ -4,6 +4,35 @@
   justify-content: center;
   min-height: 100vh;
   padding-top: 100px;
-  background: linear-gradient(to right, #2b5876 0%, #4e4376 51%, #2b5876 100%);
+  background: linear-gradient(to right, #EB3349 0%, #F45C43 51%, #EB3349 100%);
 
+  .QuizListWrapper {
+    max-width: 600px;
+    padding: 0 10px;
+
+    h1 {
+      color: #fff;
+      text-align: center;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        margin-bottom: 10px;
+
+        a {
+          color: #fff;
+          font-size: 20px;
+          text-decoration: none;
+
+          &:hover {
+            color: #363f54;
+          }
+        }
+      }
+    }
+  }
 }

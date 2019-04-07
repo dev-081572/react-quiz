@@ -18,7 +18,7 @@ class QuizList extends Component {
   render() {
     return (
       <div className = {styles.QuizList}>
-        <div>
+        <div className = {styles.QuizListWrapper}>
           <h1>Список тестов</h1>
 
           <ul>
