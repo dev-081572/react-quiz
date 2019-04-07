@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styles from './Auth.module.scss';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
-import {validateControl} from '../../form/formFunctions';
+import {validateControl, validateForm} from '../../form/formFunctions';
 
 class Auth extends Component {
   state = {
@@ -31,7 +31,8 @@ class Auth extends Component {
           minLength: 6
         }
       }
-    }
+    },
+    formValid: false
   }
 
   loginHandler = () => {
@@ -57,7 +58,8 @@ class Auth extends Component {
     formControls[controlName] = control;
 
     this.setState({
-      formControls
+      formControls,
+      formValid: validateForm(formControls)
     });
   }
 
@@ -90,8 +92,21 @@ class Auth extends Component {
           <form onSubmit = {this.submitHandler}>
             {this.renderInputs()}
 
-            <Button type="success" onClick = {this.loginHandler}>Войти</Button>
-            <Button type="primary" onClick = {this.registerHandler}>Зарегистрироваться</Button>
+            <Button
+              type="success"
+              onClick = {this.loginHandler}
+              disabled = {!this.state.formValid}
+            >
+              Войти
+            </Button>
+
+            <Button
+              type="primary"
+              onClick = {this.registerHandler}
+              disabled = {!this.state.formValid}
+            >
+              Зарегистрироваться
+            </Button>
           </form>
         </div>
       </div>

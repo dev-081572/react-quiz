@@ -21,3 +21,13 @@ export function validateControl(value, validation) {
 
   return isValid;
 }
+
+export function validateForm(formControls) {
+  let isValid = true;
+
+  Object.keys(formControls).forEach(name => {
+    isValid = isValid && formControls[name].valid;
+  });
+
+  return isValid;
+}
