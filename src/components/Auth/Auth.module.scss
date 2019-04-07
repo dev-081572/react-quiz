@@ -1,3 +1,29 @@
 .Auth {
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 100px;
+  background: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
+
+  .AuthWrapper {
+    max-width: 600px;
+    padding: 0 10px;
+
+    h1 {
+      color: #fff;
+      text-align: center;
+    }
+
+    form {
+      box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #B1CCE7;
+
+      input {
+        display: block;
+      }
+    }
+  }
 }
