@@ -2,22 +2,28 @@ import React from 'react';
 import styles from './FinishedQuiz.module.scss';
 
 const FinishedQuiz = props => {
-
   return (
     <div className = {styles.FinishedQuiz}>
       <ul>
-        <li>
-          <i className = {'fa fa-times ' + styles.fail} />
-          <p><strong>1</strong>. Вопрос</p>
-        </li>
-        <li>
-          <i className = {'fa fa-check ' + styles.success} />
-          <p><strong>2</strong>. Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос Вопрос</p>
-        </li>
+        {
+          props.quiz.map((quizItem, index) => {
+            const cls = [
+              'fa',
+              props.results[quizItem.questionId] === 'success' ? 'fa-check' : 'fa-times',
+              styles[props.results[quizItem.questionId]]
+            ];
+            return (
+              <li>
+                <i className = {cls.join(' ')} />
+                <p><strong>{quizItem.questionId}</strong>. {quizItem.questionText}</p>
+              </li>
+            )
+          })
+        }
       </ul>
 
       <p>
-        Правильно 4 из 10
+        Правильно 4 из {props.quiz.length}
       </p>
 
       <div>

@@ -55,7 +55,8 @@ class Quiz extends Component {
       }
     ],
     answerState: null,
-    isFinished: true
+    results: {},
+    isFinished: false,
   }
 
   onAnswerClickHandler = answerId => {
@@ -67,10 +68,15 @@ class Quiz extends Component {
     }
 
     const quizItem = this.state.quiz[this.state.activeQuestion];
+    const results = this.state.results;
 
     if (quizItem.rightAnswerId === answerId) {
+      if (!results[quizItem.questionId]) {
+        results[quizItem.questionId] = 'success';
+      }
       this.setState({
-        answerState: {[answerId]: 'success'}
+        answerState: {[answerId]: 'success'},
+        results
       });
 
       const timeout = setTimeout(() => {
@@ -88,9 +94,13 @@ class Quiz extends Component {
         }
       }, 1000);
     } else {
+      if (!results[quizItem.questionId]) {
+        results[quizItem.questionId] = 'fail';
+      }
       this.setState({
-        answerState: {[answerId]: 'fail'}
-      })
+        answerState: {[answerId]: 'fail'},
+        results
+      });
     }
   }
 
@@ -105,7 +115,10 @@ class Quiz extends Component {
           <h1>Quiz</h1>
           {
             this.state.isFinished
-            ? <FinishedQuiz />
+            ? <FinishedQuiz
+                results = {this.state.results}
+                quiz = {this.state.quiz}
+              />
             : <ActiveQuiz
                 question = {this.state.quiz[this.state.activeQuestion].questionText}
                 questionNumber = {this.state.activeQuestion + 1}
