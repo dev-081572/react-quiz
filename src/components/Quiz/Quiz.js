@@ -59,13 +59,21 @@ class Quiz extends Component {
     const quizItem = this.state.quiz[this.state.activeQuestion];
 
     if (quizItem.rightAnswerId === answerId) {
-      const timeout = setTimeout(() => {
-        this.setState({
-          activeQuestion: this.state.activeQuestion + 1
-        });
-        clearTimeout(timeout);
-      }, 1000);
+      if (this.isQuizFinished()) {
+        console.log('Quiz Finished');
+      } else {
+        const timeout = setTimeout(() => {
+          this.setState({
+            activeQuestion: this.state.activeQuestion + 1
+          });
+          clearTimeout(timeout);
+        }, 1000);
+      }
     }
+  }
+
+  isQuizFinished() {
+    return this.state.activeQuestion + 1 === this.state.quiz.length;
   }
 
   render() {
