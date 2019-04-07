@@ -13,12 +13,51 @@ class QuizCreator extends Component {
     formValid: false
   }
 
-  addQuestionHandler = () => {
+  addQuestionHandler = event => {
+    event.preventDefault();
 
+    const quiz = this.state.quiz.concat();
+    const index = quiz.length + 1;
+    const {question, option1, option2, option3, option4} = this.state.formControls;
+
+    const quizItem = {
+      questionText: question.value,
+      questionId: index,
+      rightAnswerId: this.state.rightAnswerId,
+      answers: [
+        {
+          answerText: option1.value,
+          answerId: option1.optionId
+        },
+        {
+          answerText: option2.value,
+          answerId: option2.optionId
+        },
+        {
+          answerText: option3.value,
+          answerId: option3.optionId
+        },
+        {
+          answerText: option4.value,
+          answerId: option4.optionId
+        }
+      ]
+    };
+
+    quiz.push(quizItem);
+
+    this.setState({
+      quiz,
+      formControls: createFormControls(),
+      rightAnswerId: 1,
+      formValid: false
+    });
   }
 
-  addQuizHandler = () => {
+  addQuizHandler = event => {
+    event.preventDefault();
 
+    console.log(this.state.quiz); // TODO: Server
   }
 
   submitHandler = event => {
