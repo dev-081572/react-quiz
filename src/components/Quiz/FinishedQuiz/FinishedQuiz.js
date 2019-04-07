@@ -21,7 +21,7 @@ const FinishedQuiz = props => {
               styles[props.results[quizItem.questionId]]
             ];
             return (
-              <li>
+              <li key = {index}>
                 <i className = {cls.join(' ')} />
                 <p><strong>{quizItem.questionId}</strong>. {quizItem.questionText}</p>
               </li>

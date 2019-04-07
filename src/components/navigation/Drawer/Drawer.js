@@ -9,7 +9,7 @@ class Drawer extends Component {
     return links.map((link, index) => {
       return (
         <li key = {index}>
-          <a>Links {link}</a>
+          <a>Link {link}</a>
         </li>
       );
     });

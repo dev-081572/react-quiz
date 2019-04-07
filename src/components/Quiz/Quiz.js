@@ -81,7 +81,6 @@ class Quiz extends Component {
 
       const timeout = setTimeout(() => {
         if (this.isQuizFinished()) {
-          console.log('Quiz Finished');
           this.setState({
             isFinished: true
           });
@@ -121,7 +120,7 @@ class Quiz extends Component {
     return (
       <div className = {styles.Quiz}>
         <div className = {styles.QuizWrapper}>
-          <h1>Quiz</h1>
+          <h1>{!this.state.isFinished ? 'Ответьте на все вопросы' : 'Результаты викторины'}</h1>
           {
             this.state.isFinished
             ? <FinishedQuiz
