@@ -69,7 +69,8 @@ class Quiz extends Component {
           console.log('Quiz Finished');
         } else {
           this.setState({
-            activeQuestion: this.state.activeQuestion + 1
+            activeQuestion: this.state.activeQuestion + 1,
+            answerState: null
           });
           clearTimeout(timeout);
         }
