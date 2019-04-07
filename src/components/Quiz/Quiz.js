@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styles from './Quiz.module.scss';
 import ActiveQuiz from './ActiveQuiz/ActiveQuiz';
+import FinishedQuiz from './FinishedQuiz/FinishedQuiz';
 
 class Quiz extends Component {
   state = {
@@ -54,7 +55,7 @@ class Quiz extends Component {
       }
     ],
     answerState: null,
-    isFinished: false
+    isFinished: true
   }
 
   onAnswerClickHandler = answerId => {
@@ -104,7 +105,7 @@ class Quiz extends Component {
           <h1>Quiz</h1>
           {
             this.state.isFinished
-            ? <h2>Quiz Finished</h2>
+            ? <FinishedQuiz />
             : <ActiveQuiz
                 question = {this.state.quiz[this.state.activeQuestion].questionText}
                 questionNumber = {this.state.activeQuestion + 1}

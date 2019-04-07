@@ -1,0 +1,37 @@
+.FinishedQuiz {
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      padding: 5px 0;
+
+      i {
+        display: inline-block;
+        min-width: 20px;
+        text-align: center;
+        margin-right: 5px;
+        padding-top: 4px;
+
+        &.success {
+          color: rgba(161,240,69,.7);
+        }
+        &.fail {
+          color: rgba(240,87,108,.7);
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
