@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import styles from './QuizCreator.module.scss';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
+import Select from '../../UI/Select/Select';
 import {createFormControls} from '../../form/formFunctions';
 
 class QuizCreator extends Component {
   state = {
     quiz: [],
-    formControls: createFormControls()
+    formControls: createFormControls(),
+    rightAnswerId: 1
   }
 
   addQuestionHandler = () => {
@@ -24,6 +26,10 @@ class QuizCreator extends Component {
 
   onChangeHandler = (event, controlName) => {
     console.log(`${controlName}: ${event.target.value}`);
+  }
+
+  selectChangeHandler = event => {
+    console.log(event.target.value);
   }
 
   renderControls() {
@@ -50,6 +56,22 @@ class QuizCreator extends Component {
   }
 
   render() {
+    const select = (
+      <Select
+        label = 'Выберите правильный ответ'
+        value = {this.state.rightAnswerId}
+        onChange = {this.selectChangeHandler}
+        options = {
+          [
+            {text: 1, value: 1},
+            {text: 2, value: 2},
+            {text: 3, value: 3},
+            {text: 4, value: 4}
+          ]
+        }
+      />
+    );
+
     return (
       <div className = {styles.QuizCreator}>
         <div className = {styles.QuizCreatorWrapper}>
@@ -58,11 +80,7 @@ class QuizCreator extends Component {
           <form onSubmit = {this.submitHandler}>
             {this.renderControls()}
 
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
+            {select}
 
             <Button
               type = 'success'
