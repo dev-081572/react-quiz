@@ -30,6 +30,7 @@ class Drawer extends Component {
             to = {link.to}
             exact = {link.exact}
             activeClassName = {styles.active}
+            onClick = {this.props.onClose}
           >
             {link.label}
           </NavLink>
