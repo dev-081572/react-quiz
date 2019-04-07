@@ -3,13 +3,14 @@ import styles from './QuizCreator.module.scss';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import Select from '../../UI/Select/Select';
-import {createFormControls} from '../../form/formFunctions';
+import {createFormControls, validateControl, validateForm} from '../../form/formFunctions';
 
 class QuizCreator extends Component {
   state = {
     quiz: [],
     formControls: createFormControls(),
-    rightAnswerId: 1
+    rightAnswerId: 1,
+    formValid: false
   }
 
   addQuestionHandler = () => {
@@ -25,7 +26,19 @@ class QuizCreator extends Component {
   }
 
   onChangeHandler = (event, controlName) => {
-    console.log(`${controlName}: ${event.target.value}`);
+    const formControls = {...this.state.formControls};
+    const control = {...formControls[controlName]};
+
+    control.value = event.target.value;
+    control.touched = true;
+    control.valid = validateControl(control.value, control.validation);
+
+    formControls[controlName] = control;
+
+    this.setState({
+      formControls,
+      formValid: validateForm(formControls)
+    });
   }
 
   selectChangeHandler = event => {
@@ -87,6 +100,7 @@ class QuizCreator extends Component {
             <Button
               type = 'success'
               onClick = {this.addQuestionHandler}
+              disabled = {!this.state.formValid}
             >
               Добавить вопрос
             </Button>
@@ -94,6 +108,7 @@ class QuizCreator extends Component {
             <Button
               type = 'primary'
               onClick = {this.addQuizHandler}
+              disabled = {this.state.quiz.length === 0}
             >
               Добавить тест
             </Button>
