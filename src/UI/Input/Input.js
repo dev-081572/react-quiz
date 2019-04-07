@@ -1,10 +1,18 @@
 import React from 'react';
 import styles from './Input.module.scss';
 
+function isInvalid({valid, touched, shouldValidate}) {
+  return !valid && touched && shouldValidate;
+}
+
 const Input = props => {
   const inputType = props.type;
   const cls = [styles.Input];
   const htmlFor = `${inputType}-${Math.random()}`;
+
+  if (isInvalid(props)) {
+    cls.push(styles.invalid)
+  }
 
   return (
     <div className = {cls.join(' ')}>
@@ -17,7 +25,7 @@ const Input = props => {
         onChange = {props.onChange}
       />
 
-      <span>{props.errorMessage}</span>
+      {isInvalid(props) ? <span>{props.errorMessage}</span> : null}
     </div>
   )
 }
