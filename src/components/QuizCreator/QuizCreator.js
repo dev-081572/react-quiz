@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import styles from './QuizCreator.module.scss';
 import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
+import {createFormControls} from '../../form/formFunctions';
 
 class QuizCreator extends Component {
+  state = {
+    quiz: [],
+    formControls: createFormControls()
+  }
+
   addQuestionHandler = () => {
 
   }
@@ -15,6 +22,30 @@ class QuizCreator extends Component {
     event.preventDefault();
   }
 
+  onChangeHandler = (event, controlName) => {
+    console.log(`${controlName}: ${event.target.value}`);
+  }
+
+  renderControls() {
+    return Object.keys(this.state.formControls).map((controlName, index) => {
+      const control = this.state.formControls[controlName];
+
+      return (
+        <Input
+          key = {index}
+          type = {control.type}
+          label = {control.label}
+          value = {control.value}
+          errorMessage = {control.errorMessage}
+          valid = {control.valid}
+          touched = {control.touched}
+          shouldValidate = {!!control.validation}
+          onChange = {event => this.onChangeHandler(event, controlName)}
+        />
+      )
+    })
+  }
+
   render() {
     return (
       <div className = {styles.QuizCreator}>
@@ -22,12 +53,7 @@ class QuizCreator extends Component {
           <h1>Создать тест</h1>
 
           <form onSubmit = {this.submitHandler}>
-            <input type="text" />
-            <hr />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
+            {this.renderControls()}
 
             <select>
               <option value="1">1</option>
