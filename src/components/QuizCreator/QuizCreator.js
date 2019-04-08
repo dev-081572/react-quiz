@@ -4,6 +4,7 @@ import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import Select from '../../UI/Select/Select';
 import {createFormControls, validateControl, validateForm} from '../../form/formFunctions';
+import axios from 'axios';
 
 class QuizCreator extends Component {
   state = {
@@ -57,7 +58,13 @@ class QuizCreator extends Component {
   addQuizHandler = event => {
     event.preventDefault();
 
-    console.log(this.state.quiz); // TODO: Server
+    axios.post('https://react-quiz-a1732.firebaseio.com/quizes.json', this.state.quiz)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   submitHandler = event => {
