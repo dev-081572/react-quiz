@@ -59,8 +59,14 @@ class QuizCreator extends Component {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://react-quiz-a1732.firebaseio.com/quizes.json', this.state.quiz);
-      console.log(response.data);
+      await axios.post('https://react-quiz-a1732.firebaseio.com/quizes.json', this.state.quiz);
+
+      this.setState({
+        quiz: [],
+        formControls: createFormControls(),
+        rightAnswerId: 1,
+        formValid: false
+      })
     } catch(e) {
       console.log(e);
     }
