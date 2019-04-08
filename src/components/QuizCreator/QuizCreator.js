@@ -55,16 +55,15 @@ class QuizCreator extends Component {
     });
   }
 
-  addQuizHandler = event => {
+  addQuizHandler = async event => {
     event.preventDefault();
 
-    axios.post('https://react-quiz-a1732.firebaseio.com/quizes.json', this.state.quiz)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      })
+    try {
+      const response = await axios.post('https://react-quiz-a1732.firebaseio.com/quizes.json', this.state.quiz);
+      console.log(response.data);
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   submitHandler = event => {
