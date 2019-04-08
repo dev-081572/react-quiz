@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import styles from './QuizList.module.scss';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Loader from '../../UI/Loader/Loader';
 
 class QuizList extends Component {
   state = {
-    quizes: []
+    quizes: [],
+    loading: true
   }
 
   renderQuizes() {
@@ -34,7 +36,8 @@ class QuizList extends Component {
       })
 
       this.setState({
-        quizes
+        quizes,
+        loading: false
       });
 
     } catch(e) {
@@ -48,9 +51,14 @@ class QuizList extends Component {
         <div className = {styles.QuizListWrapper}>
           <h1>Список тестов</h1>
 
-          <ul>
-            {this.renderQuizes()}
-          </ul>
+          {
+            this.state.loading
+            ? <Loader />
+            : <ul>
+                {this.renderQuizes()}
+              </ul>
+          }
+
         </div>
       </div>
     );
