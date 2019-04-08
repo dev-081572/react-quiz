@@ -4,16 +4,18 @@ import AnswerItem from './AnswerItem/AnswerItem';
 
 const AnswerList = props => (
   <ul className = {styles.AnswerList}>
-    {props.answers.map((answer, index) => {
-      return (
-        <AnswerItem
-          key = {index}
-          answer = {answer}
-          onAnswerClick = {props.onAnswerClick}
-          answerState = {props.answerState ? props.answerState[answer.answerId] : null}
-        />
-      )
-    })}
+    {
+      props.answers.map((answer, index) => {
+        return (
+          <AnswerItem
+            key = {index}
+            answer = {answer}
+            onAnswerClick = {props.onAnswerClick}
+            answerState = {props.answerState ? props.answerState[answer.answerId] : null}
+          />
+        )
+      })
+    }
   </ul>
 );
 

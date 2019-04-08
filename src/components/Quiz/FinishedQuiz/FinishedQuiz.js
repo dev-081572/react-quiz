@@ -21,6 +21,7 @@ const FinishedQuiz = props => {
               props.results[quizItem.questionId] === 'success' ? 'fa-check' : 'fa-times',
               styles[props.results[quizItem.questionId]]
             ];
+            
             return (
               <li key = {index}>
                 <i className = {cls.join(' ')} />

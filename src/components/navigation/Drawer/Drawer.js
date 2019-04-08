@@ -48,11 +48,12 @@ class Drawer extends Component {
 
     return (
       <React.Fragment>
-        <div className = {cls.join(' ')}>
+        <nav className = {cls.join(' ')}>
           <ul>
             {this.renderLinks()}
           </ul>
-        </div>
+        </nav>
+
         {this.props.isOpen ? <Backdrop onClick = {this.props.onClose} /> : null}
       </React.Fragment>
     )

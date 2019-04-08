@@ -4,6 +4,7 @@
   justify-content: center;
   min-height: 100vh;
   padding-top: 100px;
+  padding-bottom: 10px;
   background: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
 
   .AuthWrapper {
@@ -20,10 +21,6 @@
       padding: 15px;
       border-radius: 5px;
       background-color: #B1CCE7;
-
-      input {
-        display: block;
-      }
     }
   }
 }

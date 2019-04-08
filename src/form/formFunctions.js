@@ -1,6 +1,6 @@
 import is from 'is_js';
 
-export function validateControl(value, validation) {
+export function validateControl(value, validation = null) {
   if (!validation) {
     return true;
   }

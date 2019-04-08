@@ -4,6 +4,7 @@
   justify-content: center;
   min-height: 100vh;
   padding-top: 100px;
+  padding-bottom: 10px;
   background: linear-gradient(to right, #C04848 0%, #480048 51%, #C04848 100%);
 
   .QuizCreatorWrapper {
@@ -20,10 +21,6 @@
       padding: 15px;
       border-radius: 5px;
       background-color: #B1CCE7;
-
-      input {
-        display: block;
-      }
     }
   }
 }

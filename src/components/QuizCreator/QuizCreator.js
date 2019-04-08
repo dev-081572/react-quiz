@@ -93,7 +93,6 @@ class QuizCreator extends Component {
       return (
         <React.Fragment key = {index}>
           <Input
-            type = {control.type}
             label = {control.label}
             value = {control.value}
             errorMessage = {control.errorMessage}
