@@ -7,8 +7,13 @@ import Auth from '../Auth/Auth';
 import QuizCreator from '../QuizCreator/QuizCreator';
 import Quiz from '../Quiz/Quiz';
 import Logout from '../Logout/Logout';
+import {autoLogin} from '../../redux/actions/auth';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.autoLogin();
+  }
+
   render() {
     let routes = (
       <Switch>
@@ -45,4 +50,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+function mapDispatchToProps(dispatch) {
+  return {
+    autoLogin: () => dispatch(autoLogin())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
